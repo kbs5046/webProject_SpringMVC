@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.controller.dto.UserDto;
 import javax.servlet.http.HttpServletResponse;
@@ -100,6 +101,7 @@ public class LogInController {
 		return "redirect:/paginateUsers";
 	}
 	
+	
 	@PostMapping("/editSignUp")
 	public String editUser(@ModelAttribute UserDto userDto) {
 		byte[] bphoto = null;
@@ -176,6 +178,31 @@ public class LogInController {
 		 outputStream.flush();
 	
 	}
+	
+	@GetMapping("/selectSignupForImage")
+	public String  selectUserForImage(@RequestParam int sid, Model model,HttpSession session) {
+		UserDto userEntity = userService.selectById(sid);
+		int uid = (int)session.getAttribute("uid");
+		String role = (String)session.getAttribute("role");
+		model.addAttribute("entityForImage", userEntity);
+		if(uid==sid || role.equalsIgnoreCase("admin")) {
+			return "uimage";
+		}
+		model.addAttribute("message", "Hey! you can not edit others info");
+		return "redirect:/paginateUsers";
+	}
+	
+	@PostMapping("/updateImageByID")
+	public String updatImage(@RequestParam int uid,@RequestParam MultipartFile photo) throws IOException{
+		byte[] bphoto = photo.getBytes();
+		UserDto userDto = new UserDto();
+		userDto.setBphoto(bphoto);
+		userDto.setuID(uid);
+		userService.updateUser(userDto);
+		return "redirect:/paginateUsers";
+	}
+	
+	
 }
 
 
