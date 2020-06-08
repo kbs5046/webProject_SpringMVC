@@ -24,17 +24,21 @@
   	<hr/>	
   	 
   		 <form action="auth"  method="post">
-  		  <b>Username</b>
-  		   <input type="text"  name="username"  class="form-control"  required="required" style="width: 50%;">
-  		   
-  		   <b>Password</b>
-  		   <input type="password"  name="password"  class="form-control"  required="required" style="width: 50%;">
-  		    <br/>
-  		   <button type="submit" class="btn btn-primary" style ="background-color: Blue">Sign In</button>
-  		   <a href="${pageContext.request.contextPath}/signup">
-  		   <button type="button" class="btn btn-danger" style ="background-color: Red">Sign Up</button>
-  		   </a>
-  		   </form>
+  		 	<div class="input-group">
+  		 	   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>   
+	  		   <input type="text"  name="username"  class="form-control"  required="required" style="width: 50%;" placeholder="Username">
+	  		</div>
+	  		<br>
+	  		<div class="input-group">
+	  		   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>   
+	  		   <input type="password"  name="password"  class="form-control"  required="required" style="width: 50%;" placeholder="Password">
+	  		</div>
+	  		    <br/>
+	  		   <button type="submit" class="btn btn-primary" style ="background-color: Blue">Sign In</button>
+	  		   <a href="${pageContext.request.contextPath}/signup">
+	  		   <button type="button" class="btn btn-danger" style ="background-color: Red">Sign Up</button>
+	  		   </a>
+  		</form>
 </div>
 </body>
 </html>

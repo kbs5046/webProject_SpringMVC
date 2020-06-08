@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
 
 import com.controller.dto.UserDto;
 import javax.servlet.http.HttpServletResponse;
@@ -124,7 +124,7 @@ public class LogInController {
 	}
 	
 	@GetMapping("/paginateUsers")
- 	public String showPaginatedData( @RequestParam(required=false,defaultValue="3") String plimit,@RequestParam(required=false,defaultValue="1") String  pageid, Model model) {
+ 	public String showPaginatedData( @RequestParam(required=false,defaultValue="5") String plimit,@RequestParam(required=false,defaultValue="1") String  pageid, Model model) {
 		int ppageid = Integer.parseInt(pageid);
 		int pageLimit = Integer.parseInt(plimit);
 		int totalRecords=userService.findTotalSignup();
@@ -192,15 +192,15 @@ public class LogInController {
 		return "redirect:/paginateUsers";
 	}
 	
-	@PostMapping("/updateImageByID")
-	public String updatImage(@RequestParam int uid,@RequestParam MultipartFile photo) throws IOException{
-		byte[] bphoto = photo.getBytes();
-		UserDto userDto = new UserDto();
-		userDto.setBphoto(bphoto);
-		userDto.setuID(uid);
-		userService.updateUser(userDto);
-		return "redirect:/paginateUsers";
-	}
+//	@PostMapping("/updateImageByID")
+//	public String updatImage(@RequestParam int uid,@RequestParam MultipartFile photo) throws IOException{
+//		byte[] bphoto = photo.getBytes();
+//		UserDto userDto = new UserDto();
+//		userDto.setBphoto(bphoto);
+//		userDto.setuID(uid);
+//		userService.updateUser(userDto);
+//		return "redirect:/paginateUsers";
+//	}
 	
 	
 }

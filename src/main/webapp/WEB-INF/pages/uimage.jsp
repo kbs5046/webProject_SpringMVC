@@ -15,6 +15,14 @@
 	$(document).ready(function(){
 		$("#imagemodel").modal('show');
 	});
+
+	var loadFile = function(event) {
+	var output = document.getElementById('output');
+	output.src = URL.createObjectURL(event.target.files[0]);
+	output.onload = function() {
+	URL.revokeObjectURL(output.src) // free memory
+	}
+	};
 </script>
 </head>
 <body>
@@ -31,8 +39,11 @@
 			        <div class="modal-body">			        				          
 			        	<img src="${pageContext.request.contextPath}/displayImage?uid=${entityForImage.getuID()}" style="height: 200px; width: 260px;">
 				       <hr/>
-				       <form action ="${pageContext.request.contextPath}/updateImageByID?uid=${entityForImage.getuID()}" method="post" enctype="multipart/form-data">
-				       	<input type="file"  name="photo"  class="form-control" style="width: 50%;background-color: #ecffde;height: 44px">
+<%-- 				       <form action ="${pageContext.request.contextPath}/updateImageByID?uid=${entityForImage.getuID()}" method="post" enctype="multipart/form-data"> --%>
+				       <form action ="editSignUp" method="post" enctype="multipart/form-data">
+				       	<input type="hidden" name="uID" value="${entityForImage.uID }">
+				       	<input type="file"  name="photo"  class="form-control" onchange="loadFile(event)"style="width: 50%;background-color: #ecffde;height: 44px">
+				       	<img id="output" style="height: 200px; width:260px"/><span class="spinner-border spinner-border-sm"></span>
 				        	<br/>
 				        	
 				        	<button type="submit" class="btn btn-info btn-lg">Upload</button>

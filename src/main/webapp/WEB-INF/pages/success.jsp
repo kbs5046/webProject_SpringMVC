@@ -16,15 +16,21 @@
   <div  class="container">
         <br/>
   		<img src="${pageContext.request.contextPath}/img/congrates.png"  style="height: 120px;">
-  		 <h1>You are a valid user and your details are</h1>
-  		 Total Logged in User : =  ${activeSessions}
-		<br/>
-  		 Username :  ${param.username}
+  		<div class="media">
+		    <div class="media-left">
+		      <img src="${pageContext.request.contextPath}/img/user.png" class="media-object" style="width:100px; height: 80px;">
+		    </div>
+		    <div class="media-body">
+		      <h4 class="media-heading">You are a valid user and your details are</h4>
+	  		 Username :  ${param.username}
+	  		 <br/>
+	  		 Email :  ${email}<br/>
+	  		 Name :  ${name}<br/>
+	  		 Salutation :  ${salutation}
+		    </div>
+		</div>
   		 <br/>
-  		 Email :  ${email}<br/>
-  		 Name :  ${name}<br/>
-  		 Salutation :  ${salutation}
-  		 <br/>
+  		 Total Logged in User : =  ${activeSessions}<br>
   		  <hr/>
   		 <a href="paginateUsers">
   		   <button type="button" class="btn btn-danger" style ="background-color: Green"> Goto Users </button>
